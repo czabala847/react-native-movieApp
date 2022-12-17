@@ -1,6 +1,13 @@
 // import {StackScreenProps} from '@react-navigation/stack/lib/typescript/src/types';
 import React from 'react';
-import {ActivityIndicator, Dimensions, View} from 'react-native';
+import {
+  ActivityIndicator,
+  Dimensions,
+  FlatList,
+  ScrollView,
+  Text,
+  View,
+} from 'react-native';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import Carousel from 'react-native-snap-carousel';
 import {MoviePoster} from '../components/MoviePoster';
@@ -28,21 +35,64 @@ export const HomeScreen = () => {
   }
 
   return (
-    <View
-      style={{
-        marginTop: top + 20,
-      }}>
+    <ScrollView>
       <View
         style={{
-          height: 440,
+          marginTop: top + 20,
         }}>
-        <Carousel
-          data={moviesNowPlaying}
-          renderItem={({item}) => <MoviePoster movie={item} />}
-          sliderWidth={windowWidth}
-          itemWidth={300}
-        />
+        {/* Carrusel principal */}
+        <View
+          style={{
+            height: 440,
+          }}>
+          <Carousel
+            data={moviesNowPlaying}
+            renderItem={({item}) => <MoviePoster movie={item} />}
+            sliderWidth={windowWidth}
+            itemWidth={300}
+          />
+        </View>
+
+        {/* Películas Populares */}
+        <View style={{backgroundColor: 'red', height: 260}}>
+          <Text style={{fontSize: 30, fontWeight: 'bold'}}>En cine</Text>
+          <FlatList
+            data={moviesNowPlaying}
+            renderItem={({item}) => (
+              <MoviePoster movie={item} width={140} height={200} />
+            )}
+            keyExtractor={item => item.id.toString()}
+            horizontal
+            showsHorizontalScrollIndicator={false}
+          />
+        </View>
+        {/* Películas Populares */}
+        <View style={{backgroundColor: 'red', height: 260}}>
+          <Text style={{fontSize: 30, fontWeight: 'bold'}}>En cine</Text>
+          <FlatList
+            data={moviesNowPlaying}
+            renderItem={({item}) => (
+              <MoviePoster movie={item} width={140} height={200} />
+            )}
+            keyExtractor={item => item.id.toString()}
+            horizontal
+            showsHorizontalScrollIndicator={false}
+          />
+        </View>
+        {/* Películas Populares */}
+        <View style={{backgroundColor: 'red', height: 260}}>
+          <Text style={{fontSize: 30, fontWeight: 'bold'}}>En cine</Text>
+          <FlatList
+            data={moviesNowPlaying}
+            renderItem={({item}) => (
+              <MoviePoster movie={item} width={140} height={200} />
+            )}
+            keyExtractor={item => item.id.toString()}
+            horizontal
+            showsHorizontalScrollIndicator={false}
+          />
+        </View>
       </View>
-    </View>
+    </ScrollView>
   );
 };

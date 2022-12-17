@@ -4,16 +4,23 @@ import {Movie} from '../interfaces/movieInterface';
 
 interface Props {
   movie: Movie;
+  height?: number;
+  width?: number;
 }
 
-export const MoviePoster: React.FC<Props> = ({movie}) => {
+export const MoviePoster: React.FC<Props> = ({
+  movie,
+  height = 420,
+  width = 300,
+}) => {
   const uri = `https://image.tmdb.org/t/p/w500${movie.poster_path}`;
 
   return (
     <View
       style={{
-        height: 420,
-        width: 300,
+        height,
+        width,
+        marginHorizontal: 8,
       }}>
       <View style={styles.imageContainer}>
         <Image source={{uri}} style={styles.image} />
